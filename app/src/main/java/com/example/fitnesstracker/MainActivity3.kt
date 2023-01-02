@@ -15,7 +15,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity2 : AppCompatActivity(), SensorEventListener {
+class MainActivity3 : AppCompatActivity(), SensorEventListener {
 
     // Добавлен SensorEventListener в класс MainActivity
     // Реализовать все элементы в классе MainActivity
@@ -37,21 +37,14 @@ class MainActivity2 : AppCompatActivity(), SensorEventListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2)
+        setContentView(R.layout.activity_main3)
 
         //initialize
         val mButton = findViewById<ImageView>(R.id.imageView3) as ImageView
         //handle onClick
         mButton.setOnClickListener {
             //intent to start NewActivity
-            startActivity(Intent(this@MainActivity2, MainActivity::class.java))
-        }
-        //initialize
-        val sButton = findViewById<ImageView>(R.id.imageView4) as ImageView
-        //handle onClick
-        mButton.setOnClickListener {
-            //intent to start NewActivity
-            startActivity(Intent(this@MainActivity2, MainActivity3::class.java))
+            startActivity(Intent(this@MainActivity3, MainActivity::class.java))
         }
 
         loadData()
@@ -96,7 +89,7 @@ class MainActivity2 : AppCompatActivity(), SensorEventListener {
             // Текущие шаги рассчитываются путем учета разницы между общими шагами
             // и предыдущие шаги
             val currentSteps =
-                totalSteps.toInt() * 0.01//сдесь расчет каллорий и т.д.
+                totalSteps.toInt() * 0.0007//сдесь расчет каллорий и т.д.
 
             // It will show the current steps to the user
             tv_stepsTaken.text = ("$currentSteps")
