@@ -18,9 +18,9 @@ import androidx.appcompat.app.AppCompatActivity
 class MainActivity2 : AppCompatActivity(), SensorEventListener {
 
     private var sensorManager: SensorManager? = null
-    private var running = false
-    private var totalSteps = 0f
-    private var previousTotalSteps = 0f
+    private var runningKcal = false
+    private var totalKcal = 0f
+    private var previousTotalKcal = 0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,14 +35,14 @@ class MainActivity2 : AppCompatActivity(), SensorEventListener {
         hButton.setOnClickListener {
             startActivity(Intent(this@MainActivity2, MainActivity::class.java))
         }
-        loadData()
-        resetSteps()
+        loadDataKcal()
+        resetKcal()
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
     }
 
     override fun onResume() {
         super.onResume()
-        running = true
+        runningKcal = true
         val stepSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
         if (stepSensor == null) {
             Toast.makeText(
@@ -55,26 +55,27 @@ class MainActivity2 : AppCompatActivity(), SensorEventListener {
         }
     }
     override fun onSensorChanged(event: SensorEvent?) {
-        var tv_stepsTaken = findViewById<TextView>(R.id.tv_stepsTaken)
+        var tv_kcalTaken = findViewById<TextView>(R.id.tv_kcalTaken)
 
-        if (running) {
-            totalSteps = event!!.values[0]
-            val currentSteps =
-                totalSteps.toInt() * 0.01
-            tv_stepsTaken.text = ("$currentSteps")
+        if (runningKcal) {
+            totalKcal = event!!.values[0]
+            val currentKcal =
+                (totalKcal.toInt() - previousTotalKcal.toInt())* 0.01
+            tv_kcalTaken.text = ("$currentKcal")
         }
     }
 
-    fun resetSteps() {
-        var tv_stepsTaken = findViewById<TextView>(R.id.tv_stepsTaken)
-        tv_stepsTaken.setOnClickListener {
+    fun resetKcal() {
+
+        var tv_kcalTaken = findViewById<TextView>(R.id.tv_kcalTaken)
+        tv_kcalTaken.setOnClickListener {
             Toast.makeText(this, "Длительное нажатие для сброса каллорий", Toast.LENGTH_SHORT).show()
         }
 
-        tv_stepsTaken.setOnLongClickListener {
+        tv_kcalTaken.setOnLongClickListener {
 
-            previousTotalSteps = totalSteps
-            tv_stepsTaken.text = 0.toString()
+            previousTotalKcal = totalKcal
+            tv_kcalTaken.text = 0.toString()
             saveData()
 
             true
@@ -82,19 +83,19 @@ class MainActivity2 : AppCompatActivity(), SensorEventListener {
     }
 
     private fun saveData() {
-        val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences("myPrefs2", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-        editor.putFloat("key1", previousTotalSteps)
+        editor.putFloat("key2", previousTotalKcal)
         editor.apply()
     }
 
-    private fun loadData() {
-        val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
-        val savedNumber = sharedPreferences.getFloat("key1", 0f)
+    private fun loadDataKcal() {
+        val sharedPreferences = getSharedPreferences("myPrefs2", Context.MODE_PRIVATE)
+        val savedNumber = sharedPreferences.getFloat("key2", 0f)
 
         Log.d("MainActivity2", "$savedNumber")
 
-        previousTotalSteps = savedNumber
+        previousTotalKcal = savedNumber
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
