@@ -17,82 +17,51 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
-
-    // Добавлен SensorEventListener в класс MainActivity
-    // Реализовать все элементы в классе MainActivity
-    // после добавления SensorEventListener
-    // мы присвоили sensorManger значение nullable
     private var sensorManager: SensorManager? = null
-
-    // Создание переменной, которая будет давать статус выполнения
-    // и изначально присвоено логическое значение false
     private var running = false
-
-    // Создание переменной, которая будет подсчитывать общее количество шагов
-    // и ему было присвоено значение 0 с плавающей точкой
     private var totalSteps = 0f
-
-    // Создание переменной, которая подсчитывает предыдущую сумму
-    // шаги, и ему также было присвоено значение 0 с плавающей точкой
     private var previousTotalSteps = 0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //initialize
-        val mButton = findViewById<ImageView>(R.id.imageView2) as ImageView
-        //handle onClick
+
+        val mButton = findViewById<ImageView>(R.id.imageViewKcall) as ImageView
         mButton.setOnClickListener {
-            //intent to start NewActivity
             startActivity(Intent(this@MainActivity, MainActivity2::class.java))
         }
-
+        val sButton = findViewById<ImageView>(R.id.imageViewDistance) as ImageView
+        sButton.setOnClickListener {
+            startActivity(Intent(this@MainActivity, MainActivity3::class.java))
+        }
         loadData()
         resetSteps()
-
-        // Добавление контекста диспетчера датчиков SENSOR_SERVICE aas
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
     }
 
     override fun onResume() {
         super.onResume()
         running = true
-
-        // Возвращает количество шагов, предпринятых пользователем с момента последней перезагрузки при активации
-        // Для этого датчика требуется разрешение android.permission.ACTIVITY_RECOGNITION.
-        // Не забываем добавить следующее разрешение в AndroidManifest.xml присутствует в папке манифеста приложения.
         val stepSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
-
-
         if (stepSensor == null) {
-            // Это выдаст пользователю всплывающее сообщение, если в устройстве нет датчика
             Toast.makeText(
                 this,
                 "Данное приложение не поддерживается на вашем девайсе",
                 Toast.LENGTH_SHORT
             ).show()
         } else {
-            // Скорость, подходящая для пользовательского интерфейса
             sensorManager?.registerListener(this, stepSensor, SensorManager.SENSOR_DELAY_UI)
         }
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
-
-        // Вызов TextView, который мы создали в activity_main.xml
-        // по идентификатору, присвоенному этому текстовому представлению
         var tv_stepsTaken = findViewById<TextView>(R.id.tv_stepsTaken)
 
         if (running) {
             totalSteps = event!!.values[0]
-
-            // Текущие шаги рассчитываются путем учета разницы между общими шагами
-            // и предыдущие шаги
             val currentSteps =
-                totalSteps.toInt() - previousTotalSteps.toInt()//сдесь расчет каллорий и т.д.
-
-            // It will show the current steps to the user
+                totalSteps.toInt() - previousTotalSteps.toInt()
             tv_stepsTaken.text = ("$currentSteps")
         }
     }
@@ -100,19 +69,13 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     fun resetSteps() {
         var tv_stepsTaken = findViewById<TextView>(R.id.tv_stepsTaken)
         tv_stepsTaken.setOnClickListener {
-            // Это выдаст всплывающее сообщение, если пользователь захочет сбросить шаги
             Toast.makeText(this, "Длительное нажатие для сброса шагов", Toast.LENGTH_SHORT).show()
         }
 
         tv_stepsTaken.setOnLongClickListener {
 
             previousTotalSteps = totalSteps
-
-            // Когда пользователь нажмет длительное нажатие на экран,
-            // шаги будут сброшены на 0
             tv_stepsTaken.text = 0.toString()
-
-            // Это сохранит данные
             saveData()
 
             true
@@ -121,9 +84,6 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     private fun saveData() {
 
-        // Общие настройки позволят нам сохранить
-        // и извлекать данные в виде пары ключ-значение.
-        // В этой функции мы сохраним данные
         val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
 
         val editor = sharedPreferences.edit()
@@ -132,18 +92,14 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     private fun loadData() {
-
-        // В этой функции мы будем извлекать данные
         val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
         val savedNumber = sharedPreferences.getFloat("key1", 0f)
 
-        // Log.d используется для целей отладки
         Log.d("MainActivity", "$savedNumber")
 
         previousTotalSteps = savedNumber
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-        // Нам не нужно ничего писать в этой функции для этого приложения
     }
 }

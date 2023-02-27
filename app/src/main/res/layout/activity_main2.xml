@@ -45,33 +45,33 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageViewKcall"
             android:layout_width="44dp"
             android:layout_height="41dp"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="23dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/free_icon_calories_5769784" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imageViewSteps"
             android:layout_width="44dp"
             android:layout_height="41dp"
             android:layout_marginStart="104dp"
             android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/imageView4"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewDistance"
             app:layout_constraintHorizontal_bias="0.026"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toEndOf="@+id/imageViewKcall"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/free_icon_sport_3104603" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imageViewDistance"
             android:layout_width="42dp"
             android:layout_height="39dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="39dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/free_icon_distance_526754" />
