@@ -18,9 +18,9 @@ import androidx.appcompat.app.AppCompatActivity
 class MainActivity3 : AppCompatActivity(), SensorEventListener {
 
     private var sensorManager: SensorManager? = null
-    private var running = false
-    private var totalSteps = 0f
-    private var previousTotalSteps = 0f
+    private var runningdistance = false
+    private var totalDistance = 0f
+    private var previousTotalDistance = 0f
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,14 +34,14 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener {
         hButton.setOnClickListener {
             startActivity(Intent(this@MainActivity3, MainActivity::class.java))
         }
-        loadData()
-        resetSteps()
+        loadDataDistance()
+        resetDistance()
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
     }
 
     override fun onResume() {
         super.onResume()
-        running = true
+        runningdistance = true
         val stepSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
 
 
@@ -57,45 +57,45 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener {
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
-        var tv_stepsTaken = findViewById<TextView>(R.id.tv_stepsTaken)
+        var tv_distanceTaken = findViewById<TextView>(R.id.tv_distanceTaken)
 
-        if (running) {
-            totalSteps = event!!.values[0]
-            val currentSteps =
-                totalSteps.toInt() * 0.0007
-            tv_stepsTaken.text = ("$currentSteps")
+        if (runningdistance) {
+            totalDistance = event!!.values[0]
+            val currentDistance =
+                (totalDistance.toInt() - previousTotalDistance.toInt())*0.0007
+            tv_distanceTaken.text = ("$currentDistance")
         }
     }
 
-    fun resetSteps() {
-        var tv_stepsTaken = findViewById<TextView>(R.id.tv_stepsTaken)
-        tv_stepsTaken.setOnClickListener {
+    fun resetDistance() {
+        var tv_distanceTaken = findViewById<TextView>(R.id.tv_distanceTaken)
+        tv_distanceTaken.setOnClickListener {
             Toast.makeText(this, "Длительное нажатие для сброса дистанции", Toast.LENGTH_SHORT).show()
         }
-        tv_stepsTaken.setOnLongClickListener {
+        tv_distanceTaken.setOnLongClickListener {
 
-            previousTotalSteps = totalSteps
-            tv_stepsTaken.text = 0.toString()
+            previousTotalDistance = totalDistance
+            tv_distanceTaken.text = 0.toString()
             saveData()
             true
         }
     }
 
     private fun saveData() {
-        val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val sharedPreferences = getSharedPreferences("myPrefs3", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-        editor.putFloat("key1", previousTotalSteps)
+        editor.putFloat("key3", previousTotalDistance)
         editor.apply()
     }
 
-    private fun loadData() {
+    private fun loadDataDistance() {
 
-        val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
-        val savedNumber = sharedPreferences.getFloat("key1", 0f)
+        val sharedPreferences = getSharedPreferences("myPrefs3", Context.MODE_PRIVATE)
+        val savedNumber = sharedPreferences.getFloat("key3", 0f)
 
         Log.d("MainActivity3", "$savedNumber")
 
-        previousTotalSteps = savedNumber
+        previousTotalDistance = savedNumber
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
