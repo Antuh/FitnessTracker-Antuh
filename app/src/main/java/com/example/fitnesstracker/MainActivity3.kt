@@ -34,6 +34,10 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener {
         hButton.setOnClickListener {
             startActivity(Intent(this@MainActivity3, MainActivity::class.java))
         }
+        val tButton = findViewById<ImageView>(R.id.imageViewChronometr3) as ImageView
+        tButton.setOnClickListener {
+            startActivity(Intent(this@MainActivity3, MainActivity4::class.java))
+        }
         loadDataDistance()
         resetDistance()
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager

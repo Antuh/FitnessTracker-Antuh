@@ -35,6 +35,10 @@ class MainActivity2 : AppCompatActivity(), SensorEventListener {
         hButton.setOnClickListener {
             startActivity(Intent(this@MainActivity2, MainActivity::class.java))
         }
+        val tButton = findViewById<ImageView>(R.id.imageViewChronometr2) as ImageView
+        tButton.setOnClickListener {
+            startActivity(Intent(this@MainActivity2, MainActivity4::class.java))
+        }
         loadDataKcal()
         resetKcal()
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
