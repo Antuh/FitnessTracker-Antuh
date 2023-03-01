@@ -65,7 +65,7 @@ class MainActivity2 : AppCompatActivity(), SensorEventListener {
             totalKcal = event!!.values[0]
             val currentKcal =
                 (totalKcal.toInt() - previousTotalKcal.toInt())* 0.01
-            tv_kcalTaken.text = ("$currentKcal")
+            tv_kcalTaken.text = (String.format("%.2f",currentKcal))
         }
     }
 

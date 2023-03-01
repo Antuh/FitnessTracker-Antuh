@@ -67,7 +67,7 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener {
             totalDistance = event!!.values[0]
             val currentDistance =
                 (totalDistance.toInt() - previousTotalDistance.toInt())*0.0007
-            tv_distanceTaken.text = ("$currentDistance")
+            tv_distanceTaken.text = (String.format("%.3f",currentDistance))
         }
     }
 
