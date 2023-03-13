@@ -45,6 +45,18 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
+            android:id="@+id/imageViewbmi2"
+            android:layout_width="45dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewSteps"
+            app:layout_constraintHorizontal_bias="0.648"
+            app:layout_constraintStart_toEndOf="@+id/imageViewKcall"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/free_icon_weight_249236" />
+
+        <ImageView
             android:id="@+id/imageViewChronometr2"
             android:layout_width="41dp"
             android:layout_height="41dp"

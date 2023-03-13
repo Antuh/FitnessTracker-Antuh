@@ -23,6 +23,10 @@ class MainActivity4 : AppCompatActivity() {
         tButton.setOnClickListener {
             startActivity(Intent(this@MainActivity4, MainActivity::class.java))
         }
+        val kButton = findViewById<ImageView>(R.id.imageViewbmi4) as ImageView
+        kButton.setOnClickListener {
+            startActivity(Intent(this@MainActivity4, MainActivity5::class.java))
+        }
         var chronometer: Chronometer = findViewById((R.id.chronometer2))
         var butstart: Button = findViewById(R.id.buttonstart)
         var stopbut: Button = findViewById(R.id.buttonpause)
