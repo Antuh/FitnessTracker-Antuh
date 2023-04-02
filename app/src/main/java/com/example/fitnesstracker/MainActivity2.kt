@@ -30,18 +30,22 @@ class MainActivity2 : AppCompatActivity(), SensorEventListener {
         val sButton = findViewById<ImageView>(R.id.imageViewDistance) as ImageView
         sButton.setOnClickListener {
             startActivity(Intent(this@MainActivity2, MainActivity3::class.java))
+            finish()
         }
         val hButton = findViewById<ImageView>(R.id.imageViewSteps) as ImageView
         hButton.setOnClickListener {
             startActivity(Intent(this@MainActivity2, MainActivity::class.java))
+            finish()
         }
         val tButton = findViewById<ImageView>(R.id.imageViewChronometr2) as ImageView
         tButton.setOnClickListener {
             startActivity(Intent(this@MainActivity2, MainActivity4::class.java))
+            finish()
         }
         val kButton = findViewById<ImageView>(R.id.imageViewbmi2) as ImageView
         kButton.setOnClickListener {
             startActivity(Intent(this@MainActivity2, MainActivity5::class.java))
+            finish()
         }
         loadDataKcal()
         resetKcal()
