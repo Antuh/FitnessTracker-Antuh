@@ -91,8 +91,24 @@
         android:layout_marginStart="47dp"
         android:layout_marginTop="42dp"
         android:text="Старт"
+        android:onClick="onClickStart"
         app:layout_constraintStart_toStartOf="parent"
 
+        app:layout_constraintTop_toBottomOf="@+id/chronometer2" />
+
+    <Button
+        android:id="@+id/restart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="25dp"
+        android:onClick="onClickReset"
+        android:text="Сброс"
+
+
+        app:layout_constraintEnd_toStartOf="@+id/buttonpause"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chronometer2" />
 
     <Button
@@ -103,20 +119,10 @@
         android:layout_marginTop="42dp"
         android:layout_marginEnd="54dp"
         android:text="Стоп"
+        android:onClick="onClickStop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chronometer2" />
-
-    <AnalogClock
-        android:id="@+id/clock"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginStart="85dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/chronometer2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
