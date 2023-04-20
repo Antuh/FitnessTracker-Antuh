@@ -14,7 +14,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="280dp"
         android:layout_marginEnd="8dp"
-        android:text="Steps"
+        android:text="Шаги"
         android:textColor="@color/white"
         android:textSize="45sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -118,12 +118,12 @@
 
     <ImageView
         android:id="@+id/imageViewSpeed"
-        android:layout_width="70dp"
-        android:layout_height="71dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="45dp"
+        android:layout_height="47dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/free_icon_speed_2242411" />
+        app:srcCompat="@drawable/free_icon_tools_and_utensils_453570_1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
