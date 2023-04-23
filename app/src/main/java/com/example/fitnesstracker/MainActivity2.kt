@@ -21,6 +21,7 @@ class MainActivity2 : AppCompatActivity(), SensorEventListener {
     private var runningKcal = false
     private var totalKcal = 0f
     private var previousTotalKcal = 0f
+    var backPressedTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,7 +73,7 @@ class MainActivity2 : AppCompatActivity(), SensorEventListener {
         if (runningKcal) {
             totalKcal = event!!.values[0]
             val currentKcal =
-                (totalKcal.toInt() - previousTotalKcal.toInt())* 0.01
+                (totalKcal.toInt() - previousTotalKcal.toInt())* 0.05
             tv_kcalTaken.text = (String.format("%.2f",currentKcal))
         }
     }
@@ -111,5 +112,14 @@ class MainActivity2 : AppCompatActivity(), SensorEventListener {
     }
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+    }
+    override fun onBackPressed() {
+        if (backPressedTime + 3000 > System.currentTimeMillis()) {
+            super.onBackPressed()
+            finish()
+        } else {
+            Toast.makeText(this, "Нажмите два раза, чтобы выйти из приложения", Toast.LENGTH_LONG).show()
+        }
+        backPressedTime = System.currentTimeMillis()
     }
 }

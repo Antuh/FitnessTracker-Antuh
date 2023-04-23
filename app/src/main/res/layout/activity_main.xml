@@ -126,4 +126,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/free_icon_tools_and_utensils_453570_1" />
 
+    <ImageView
+        android:id="@+id/imageViewChart"
+        android:layout_width="45dp"
+        android:layout_height="47dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewSpeed"
+        app:srcCompat="@drawable/free_icon_stats_327881" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

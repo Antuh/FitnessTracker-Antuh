@@ -14,6 +14,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import kotlin.math.roundToInt
 
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
@@ -21,6 +22,9 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     private var running = false
     private var totalSteps = 0f
     private var previousTotalSteps = 0f
+    private var currentSteps = 0
+    var backPressedTime: Long = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +56,16 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             startActivity(Intent(this@MainActivity, MainActivity5::class.java))
             finish()
         }
+        val pButton = findViewById<ImageView>(R.id.imageViewChart) as ImageView
+        pButton.setOnClickListener {
+            startActivity(Intent(this@MainActivity, PieCharts::class.java))
+            finish()
+            val intent = Intent(this, PieCharts::class.java)
+            intent.putExtra("steps",currentSteps)
+            startActivity(intent)
+            finish()
+        }
+
         loadData()
         resetSteps()
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
@@ -77,7 +91,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
         if (running) {
             totalSteps = event!!.values[0]
-            val currentSteps =
+            currentSteps =
                 totalSteps.toInt() - previousTotalSteps.toInt()
             tv_stepsTaken.text = ("$currentSteps")
         }
@@ -119,4 +133,33 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
     }
+    override fun onBackPressed() {
+        if (backPressedTime + 3000 > System.currentTimeMillis()) {
+            super.onBackPressed()
+            finish()
+        } else {
+            Toast.makeText(this, "Нажмите два раза, чтобы выйти из приложения", Toast.LENGTH_LONG).show()
+        }
+        backPressedTime = System.currentTimeMillis()
+    }
 }
+
+/*
+val handler = Handler(Looper.getMainLooper())
+val updateTimeTask = object: Runnable {
+    override fun run() {
+        val currentTime = LocalTime.now()
+        if (currentTime.hour == 0 && currentTime.minute == 0) {
+            performAction()
+        }
+        handler.postDelayed(this, 1000)
+    }
+}
+handler.post(updateTimeTask)
+}
+
+fun performAction() {
+    previousTotalSteps = totalSteps
+            tv_stepsTaken.text = 0.toString()
+            saveData()
+}*/

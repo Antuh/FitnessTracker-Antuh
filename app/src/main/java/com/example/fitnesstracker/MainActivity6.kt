@@ -8,6 +8,7 @@ import android.hardware.SensorManager
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity6 : AppCompatActivity(), SensorEventListener {
@@ -19,6 +20,7 @@ class MainActivity6 : AppCompatActivity(), SensorEventListener {
     private var lastX = 0.0f
     private var lastY = 0.0f
     private var lastZ = 0.0f
+    var backPressedTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,5 +95,14 @@ class MainActivity6 : AppCompatActivity(), SensorEventListener {
         lastY = y
         lastZ = z
         return delta * 9.81
+    }
+    override fun onBackPressed() {
+        if (backPressedTime + 3000 > System.currentTimeMillis()) {
+            super.onBackPressed()
+            finish()
+        } else {
+            Toast.makeText(this, "Нажмите два раза, чтобы выйти из приложения", Toast.LENGTH_LONG).show()
+        }
+        backPressedTime = System.currentTimeMillis()
     }
 }
