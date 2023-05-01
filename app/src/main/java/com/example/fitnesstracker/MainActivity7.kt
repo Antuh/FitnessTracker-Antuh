@@ -12,6 +12,9 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import kotlinx.android.synthetic.main.activity_main7.*
 
 class MainActivity7 : AppCompatActivity(), SensorEventListener {
     private var sensorManager: SensorManager? = null
@@ -85,14 +88,76 @@ class MainActivity7 : AppCompatActivity(), SensorEventListener {
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
-
         if (running) {
             totalSteps = event!!.values[0]
             currentSteps =
                 totalSteps.toInt() - previousTotalSteps.toInt()
         }
+        val sharedPreferences = getSharedPreferences("MY_PREFS", Context.MODE_PRIVATE)
+        swone.setOnCheckedChangeListener { _, isChecked ->
+            sharedPreferences.edit().putBoolean("SWITCH_STATE", isChecked).apply()
+        }
+        val notificationManager = NotificationManagerCompat.from(this)
+        val builder = NotificationCompat.Builder(this, "CHANNEL_ID")
+            .setSmallIcon(R.mipmap.logo)
+            .setContentTitle("Цель")
+            .setContentText("Вы достигли 5000 шагов")
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setAutoCancel(true)
+        swone.isChecked = sharedPreferences.getBoolean("SWITCH_STATE", false)
+        if (swone.isChecked) {
+            if (currentSteps == 5000)
+                notificationManager.notify(3, builder.build())
+        }
+        val sharedPreferencestwo = getSharedPreferences("MY_PREFSTWO", Context.MODE_PRIVATE)
+        swtwo.setOnCheckedChangeListener { _, isChecked ->
+            sharedPreferencestwo.edit().putBoolean("SWITCH_STATETWO", isChecked).apply()
+        }
+        val notificationManagertwo = NotificationManagerCompat.from(this)
+        val buildertwo = NotificationCompat.Builder(this, "CHANNEL_ID")
+            .setSmallIcon(R.mipmap.logo)
+            .setContentTitle("Цель")
+            .setContentText("Вы достигли 10000 шагов")
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setAutoCancel(true)
+        swtwo.isChecked = sharedPreferencestwo.getBoolean("SWITCH_STATETWO", false)
+        if (swtwo.isChecked) {
+            if (currentSteps == 10000)
+                notificationManagertwo.notify(3, buildertwo.build())
+        }
+        val sharedPreferencesthree = getSharedPreferences("MY_PREFSTHREE", Context.MODE_PRIVATE)
+        swthree.setOnCheckedChangeListener { _, isChecked ->
+            sharedPreferencesthree.edit().putBoolean("SWITCH_STATETHREE", isChecked).apply()
+        }
+        val notificationManagerthree = NotificationManagerCompat.from(this)
+        val builderthree = NotificationCompat.Builder(this, "CHANNEL_ID")
+            .setSmallIcon(R.mipmap.logo)
+            .setContentTitle("Цель")
+            .setContentText("Вы достигли 15000 шагов")
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setAutoCancel(true)
+        swthree.isChecked = sharedPreferencesthree.getBoolean("SWITCH_STATETHREE", false)
+        if (swthree.isChecked) {
+            if (currentSteps == 15000)
+                notificationManagerthree.notify(3, builderthree.build())
+        }
+        val sharedPreferencefour = getSharedPreferences("MY_PREFSFOUR", Context.MODE_PRIVATE)
+        swfour.setOnCheckedChangeListener { _, isChecked ->
+            sharedPreferencefour.edit().putBoolean("SWITCH_STATEFOUR", isChecked).apply()
+        }
+        val notificationManagerfour = NotificationManagerCompat.from(this)
+        val builderfour = NotificationCompat.Builder(this, "CHANNEL_ID")
+            .setSmallIcon(R.mipmap.logo)
+            .setContentTitle("Цель")
+            .setContentText("Вы достигли 20000 шагов")
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setAutoCancel(true)
+        swfour.isChecked = sharedPreferencefour.getBoolean("SWITCH_STATEFOUR", false)
+        if (swfour.isChecked) {
+            if (currentSteps == 20)
+                notificationManagerfour.notify(4, builderfour.build())
+        }
     }
-
 
     private fun loadData() {
         val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
