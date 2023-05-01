@@ -43,13 +43,12 @@ class MainActivity2 : AppCompatActivity(), SensorEventListener {
             startActivity(Intent(this@MainActivity2, MainActivity4::class.java))
             finish()
         }
-        val kButton = findViewById<ImageView>(R.id.imageViewbmi2) as ImageView
+        val kButton = findViewById<ImageView>(R.id.imageViewMore) as ImageView
         kButton.setOnClickListener {
-            startActivity(Intent(this@MainActivity2, MainActivity5::class.java))
+            startActivity(Intent(this@MainActivity2, MainActivity7::class.java))
             finish()
         }
         loadDataKcal()
-        resetKcal()
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
     }
 
@@ -78,35 +77,12 @@ class MainActivity2 : AppCompatActivity(), SensorEventListener {
         }
     }
 
-    fun resetKcal() {
-
-        var tv_kcalTaken = findViewById<TextView>(R.id.tv_kcalTaken)
-        tv_kcalTaken.setOnClickListener {
-            Toast.makeText(this, "Длительное нажатие для сброса каллорий", Toast.LENGTH_SHORT).show()
-        }
-
-        tv_kcalTaken.setOnLongClickListener {
-
-            previousTotalKcal = totalKcal
-            tv_kcalTaken.text = 0.toString()
-            saveData()
-
-            true
-        }
-    }
-
-    private fun saveData() {
-        val sharedPreferences = getSharedPreferences("myPrefs2", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putFloat("key2", previousTotalKcal)
-        editor.apply()
-    }
 
     private fun loadDataKcal() {
-        val sharedPreferences = getSharedPreferences("myPrefs2", Context.MODE_PRIVATE)
-        val savedNumber = sharedPreferences.getFloat("key2", 0f)
+        val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val savedNumber = sharedPreferences.getFloat("key1", 0f)
 
-        Log.d("MainActivity2", "$savedNumber")
+        Log.d("MainActivity", "$savedNumber")
 
         previousTotalKcal = savedNumber
     }

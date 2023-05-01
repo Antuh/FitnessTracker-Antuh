@@ -47,7 +47,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:id="@+id/imageViewbmi"
+            android:id="@+id/imageViewMore"
             android:layout_width="45dp"
             android:layout_height="41dp"
             android:layout_marginTop="16dp"
@@ -56,7 +56,7 @@
             app:layout_constraintHorizontal_bias="0.648"
             app:layout_constraintStart_toEndOf="@+id/imageViewKcall"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/free_icon_weight_249236" />
+            app:srcCompat="@drawable/free_icon_more_455801" />
 
         <ImageView
             android:id="@+id/imageViewKcall"
@@ -115,25 +115,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/free_icon_footprints_7936738_1" />
-
-    <ImageView
-        android:id="@+id/imageViewSpeed"
-        android:layout_width="45dp"
-        android:layout_height="47dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/free_icon_tools_and_utensils_453570_1" />
-
-    <ImageView
-        android:id="@+id/imageViewChart"
-        android:layout_width="45dp"
-        android:layout_height="47dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toStartOf="@+id/imageViewSpeed"
-        app:srcCompat="@drawable/free_icon_stats_327881" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

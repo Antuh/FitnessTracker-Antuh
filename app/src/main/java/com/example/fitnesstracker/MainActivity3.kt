@@ -8,8 +8,6 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -42,13 +40,12 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener {
             startActivity(Intent(this@MainActivity3, MainActivity4::class.java))
             finish()
         }
-        val kButton = findViewById<ImageView>(R.id.imageViewbmi3) as ImageView
+        val kButton = findViewById<ImageView>(R.id.imageViewMore) as ImageView
         kButton.setOnClickListener {
-            startActivity(Intent(this@MainActivity3, MainActivity5::class.java))
+            startActivity(Intent(this@MainActivity3, MainActivity7::class.java))
             finish()
         }
         loadDataDistance()
-        resetDistance()
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
     }
 
@@ -80,33 +77,13 @@ class MainActivity3 : AppCompatActivity(), SensorEventListener {
         }
     }
 
-    fun resetDistance() {
-        var tv_distanceTaken = findViewById<TextView>(R.id.tv_distanceTaken)
-        tv_distanceTaken.setOnClickListener {
-            Toast.makeText(this, "Длительное нажатие для сброса дистанции", Toast.LENGTH_SHORT).show()
-        }
-        tv_distanceTaken.setOnLongClickListener {
-
-            previousTotalDistance = totalDistance
-            tv_distanceTaken.text = 0.toString()
-            saveData()
-            true
-        }
-    }
-
-    private fun saveData() {
-        val sharedPreferences = getSharedPreferences("myPrefs3", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.putFloat("key3", previousTotalDistance)
-        editor.apply()
-    }
 
     private fun loadDataDistance() {
 
-        val sharedPreferences = getSharedPreferences("myPrefs3", Context.MODE_PRIVATE)
-        val savedNumber = sharedPreferences.getFloat("key3", 0f)
+        val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val savedNumber = sharedPreferences.getFloat("key1", 0f)
 
-        Log.d("MainActivity3", "$savedNumber")
+        Log.d("MainActivity", "$savedNumber")
 
         previousTotalDistance = savedNumber
     }

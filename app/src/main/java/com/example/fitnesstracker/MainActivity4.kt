@@ -32,9 +32,9 @@ class MainActivity4 : AppCompatActivity() {
             startActivity(Intent(this@MainActivity4, MainActivity::class.java))
             finish()
         }
-        val kButton = findViewById<ImageView>(R.id.imageViewbmi4) as ImageView
+        val kButton = findViewById<ImageView>(R.id.imageViewMore) as ImageView
         kButton.setOnClickListener {
-            startActivity(Intent(this@MainActivity4, MainActivity5::class.java))
+            startActivity(Intent(this@MainActivity4, MainActivity7::class.java))
             finish()
         }
         if (savedInstanceState != null) {

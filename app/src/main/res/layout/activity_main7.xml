@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    tools:context=".MainActivity7">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="410dp"
+        android:layout_height="71dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:background="#0B0B0B"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/imageViewChronometr"
+            android:layout_width="41dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewSteps"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/free_icon_stopwatch_1029933" />
+
+        <ImageView
+            android:id="@+id/imageViewSteps"
+            android:layout_width="44dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="98dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/imageViewKcall"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/free_icon_running_1590970" />
+
+        <ImageView
+            android:id="@+id/imageViewKcall"
+            android:layout_width="44dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/free_icon_calories_7935382" />
+
+        <ImageView
+            android:id="@+id/imageViewMore"
+            android:layout_width="45dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewSteps"
+            app:layout_constraintHorizontal_bias="0.324"
+            app:layout_constraintStart_toEndOf="@+id/imageViewKcall"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/free_icon_more_455801" />
+
+        <ImageView
+            android:id="@+id/imageViewDistance"
+            android:layout_width="42dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewChronometr"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/free_icon_globe_5153619" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/BMIcalculator"
+        android:layout_width="371dp"
+        android:layout_height="72dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="#494747"
+        android:elevation="10dp"
+        app:cardCornerRadius="10dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#494747"
+            android:orientation="vertical"
+            tools:layout_conversion_absoluteHeight="73dp"
+            tools:layout_conversion_absoluteWidth="369dp"
+            tools:layout_editor_absoluteX="20dp"
+            tools:layout_editor_absoluteY="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:text="BMI калькулятор"
+                android:textColor="#FFFFFF"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/PieChart"
+        android:layout_width="371dp"
+        android:layout_height="72dp"
+        android:layout_below="@+id/BMIcalculator"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="#494747"
+        android:elevation="10dp"
+        app:cardCornerRadius="10dp">
+
+
+        <LinearLayout
+            android:layout_width="369dp"
+            android:layout_height="73dp"
+            android:background="#494747"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:text="График активности"
+                android:textColor="#FFFFFF"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Speed"
+        android:layout_width="371dp"
+        android:layout_height="72dp"
+        android:layout_below="@+id/PieChart"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="#494747"
+        android:elevation="10dp"
+        app:cardCornerRadius="10dp">
+
+
+        <LinearLayout
+            android:layout_width="369dp"
+            android:layout_height="73dp"
+            android:background="#494747"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
+                android:text="Скорость"
+                android:textColor="#FFFFFF"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

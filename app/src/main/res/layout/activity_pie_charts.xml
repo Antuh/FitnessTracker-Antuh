@@ -21,29 +21,29 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:id="@+id/imageViewChronometr5"
+            android:id="@+id/imageViewChronometr"
             android:layout_width="41dp"
             android:layout_height="41dp"
             android:layout_marginStart="29dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageViewSteps3"
+            app:layout_constraintStart_toEndOf="@+id/imageViewSteps"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/free_icon_stopwatch_1029933" />
 
         <ImageView
-            android:id="@+id/imageViewSteps3"
+            android:id="@+id/imageViewSteps"
             android:layout_width="44dp"
             android:layout_height="41dp"
             android:layout_marginStart="98dp"
             android:layout_marginTop="16dp"
-            app:layout_constraintStart_toEndOf="@+id/imageViewKcall3"
+            app:layout_constraintStart_toEndOf="@+id/imageViewKcall"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/free_icon_running_1590970" />
 
         <ImageView
-            android:id="@+id/imageViewKcall3"
+            android:id="@+id/imageViewKcall"
             android:layout_width="44dp"
             android:layout_height="41dp"
             android:layout_marginStart="20dp"
@@ -53,26 +53,26 @@
             app:srcCompat="@drawable/free_icon_calories_7935382" />
 
         <ImageView
-            android:id="@+id/imageViewbmi6"
+            android:id="@+id/imageViewMore"
             android:layout_width="45dp"
             android:layout_height="41dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/imageViewSteps3"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewSteps"
             app:layout_constraintHorizontal_bias="0.324"
-            app:layout_constraintStart_toEndOf="@+id/imageViewKcall3"
+            app:layout_constraintStart_toEndOf="@+id/imageViewKcall"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/free_icon_weight_249236" />
+            app:srcCompat="@drawable/free_icon_more_455801" />
 
         <ImageView
-            android:id="@+id/imageViewDistance4"
+            android:id="@+id/imageViewDistance"
             android:layout_width="42dp"
             android:layout_height="39dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageViewChronometr5"
+            app:layout_constraintStart_toEndOf="@+id/imageViewChronometr"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/free_icon_globe_5153619" />
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,7 +2,6 @@ package com.example.fitnesstracker
 
 import android.content.Intent
 import android.graphics.Color
-import android.icu.number.IntegerWidth
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -14,10 +13,10 @@ import org.eazegraph.lib.models.PieModel
 
 class PieCharts : AppCompatActivity() {
 
-    var tvSteps: TextView? = null
-    var tvKcal: TextView? = null
-    var tvDistance: TextView? = null
-    var pieChart: PieChart? = null
+    lateinit var tvSteps: TextView
+    lateinit var tvKcal: TextView
+    lateinit var tvDistance: TextView
+    lateinit var pieChart: PieChart
     var backPressedTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,29 +28,29 @@ class PieCharts : AppCompatActivity() {
         pieChart = findViewById(R.id.piechart)
         setData()
 
-        val mButton = findViewById<ImageView>(R.id.imageViewKcall3) as ImageView
+        val mButton = findViewById<ImageView>(R.id.imageViewKcall) as ImageView
         mButton.setOnClickListener {
             startActivity(Intent(this@PieCharts, MainActivity2::class.java))
             finish()
         }
-        val sButton = findViewById<ImageView>(R.id.imageViewDistance4) as ImageView
+        val sButton = findViewById<ImageView>(R.id.imageViewDistance) as ImageView
         sButton.setOnClickListener {
             startActivity(Intent(this@PieCharts, MainActivity3::class.java))
             finish()
         }
-        val tButton = findViewById<ImageView>(R.id.imageViewChronometr5) as ImageView
+        val tButton = findViewById<ImageView>(R.id.imageViewChronometr) as ImageView
         tButton.setOnClickListener {
             startActivity(Intent(this@PieCharts, MainActivity4::class.java))
             finish()
         }
-        val iButton = findViewById<ImageView>(R.id.imageViewSteps3) as ImageView
+        val iButton = findViewById<ImageView>(R.id.imageViewSteps) as ImageView
         iButton.setOnClickListener {
             startActivity(Intent(this@PieCharts, MainActivity::class.java))
             finish()
         }
-        val kButton = findViewById<ImageView>(R.id.imageViewbmi6) as ImageView
+        val kButton = findViewById<ImageView>(R.id.imageViewMore) as ImageView
         kButton.setOnClickListener {
-            startActivity(Intent(this@PieCharts, MainActivity5::class.java))
+            startActivity(Intent(this@PieCharts, MainActivity7::class.java))
             finish()
         }
     }
@@ -71,7 +70,7 @@ class PieCharts : AppCompatActivity() {
 
         tvSteps!!.text = (steps)
         tvKcal!!.text = (String.format("%.2f", kcalInt))
-        tvDistance!!.text = (String.format("%.2f", distanceInt))
+        tvDistance!!.text = (String.format("%.3f", distanceInt))
 
         pieChart!!.addPieSlice(
             PieModel(

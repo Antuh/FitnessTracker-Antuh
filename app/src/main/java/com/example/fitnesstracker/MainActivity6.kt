@@ -46,9 +46,9 @@ class MainActivity6 : AppCompatActivity(), SensorEventListener {
             startActivity(Intent(this@MainActivity6, MainActivity::class.java))
             finish()
         }
-        val kButton = findViewById<ImageView>(R.id.imageViewbmi) as ImageView
+        val kButton = findViewById<ImageView>(R.id.imageViewMore) as ImageView
         kButton.setOnClickListener {
-            startActivity(Intent(this@MainActivity6, MainActivity5::class.java))
+            startActivity(Intent(this@MainActivity6, MainActivity7::class.java))
             finish()
         }
 

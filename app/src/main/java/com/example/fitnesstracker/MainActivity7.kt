@@ -9,12 +9,11 @@ import android.hardware.SensorManager
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 
-
-class MainActivity : AppCompatActivity(), SensorEventListener {
+class MainActivity7 : AppCompatActivity(), SensorEventListener {
     private var sensorManager: SensorManager? = null
     private var running = false
     private var totalSteps = 0f
@@ -25,32 +24,48 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main7)
 
-
+        val lButton = findViewById<CardView>(R.id.BMIcalculator) as CardView
+        lButton.setOnClickListener {
+            startActivity(Intent(this@MainActivity7, MainActivity5::class.java))
+            finish()
+        }
+        val qButton = findViewById<CardView>(R.id.PieChart) as CardView
+        qButton.setOnClickListener {
+            startActivity(Intent(this@MainActivity7, PieCharts::class.java))
+            finish()
+            val intent = Intent(this, PieCharts::class.java)
+            intent.putExtra("steps",currentSteps)
+            startActivity(intent)
+            finish()
+        }
+        val gButton = findViewById<CardView>(R.id.Speed) as CardView
+        gButton.setOnClickListener {
+            startActivity(Intent(this@MainActivity7, MainActivity6::class.java))
+            finish()
+        }
         val mButton = findViewById<ImageView>(R.id.imageViewKcall) as ImageView
         mButton.setOnClickListener {
-            startActivity(Intent(this@MainActivity, MainActivity2::class.java))
+            startActivity(Intent(this@MainActivity7, MainActivity2::class.java))
             finish()
         }
         val sButton = findViewById<ImageView>(R.id.imageViewDistance) as ImageView
         sButton.setOnClickListener {
-            startActivity(Intent(this@MainActivity, MainActivity3::class.java))
+            startActivity(Intent(this@MainActivity7, MainActivity3::class.java))
             finish()
         }
         val tButton = findViewById<ImageView>(R.id.imageViewChronometr) as ImageView
         tButton.setOnClickListener {
-            startActivity(Intent(this@MainActivity, MainActivity4::class.java))
+            startActivity(Intent(this@MainActivity7, MainActivity4::class.java))
             finish()
         }
-        val kButton = findViewById<ImageView>(R.id.imageViewMore) as ImageView
-        kButton.setOnClickListener {
-            startActivity(Intent(this@MainActivity, MainActivity7::class.java))
+        val yButton = findViewById<ImageView>(R.id.imageViewSteps) as ImageView
+        yButton.setOnClickListener {
+            startActivity(Intent(this@MainActivity7, MainActivity::class.java))
             finish()
         }
-
         loadData()
-        resetSteps()
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
     }
 
@@ -70,40 +85,14 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
-        var tv_stepsTaken = findViewById<TextView>(R.id.tv_stepsTaken)
 
         if (running) {
             totalSteps = event!!.values[0]
             currentSteps =
                 totalSteps.toInt() - previousTotalSteps.toInt()
-            tv_stepsTaken.text = ("$currentSteps")
         }
     }
 
-    fun resetSteps() {
-        var tv_stepsTaken = findViewById<TextView>(R.id.tv_stepsTaken)
-        tv_stepsTaken.setOnClickListener {
-            Toast.makeText(this, "Длительное нажатие для сброса шагов", Toast.LENGTH_SHORT).show()
-        }
-
-        tv_stepsTaken.setOnLongClickListener {
-
-            previousTotalSteps = totalSteps
-            tv_stepsTaken.text = 0.toString()
-            saveData()
-
-            true
-        }
-    }
-
-    private fun saveData() {
-
-        val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
-
-        val editor = sharedPreferences.edit()
-        editor.putFloat("key1", previousTotalSteps)
-        editor.apply()
-    }
 
     private fun loadData() {
         val sharedPreferences = getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
@@ -126,23 +115,3 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         backPressedTime = System.currentTimeMillis()
     }
 }
-
-/*
-val handler = Handler(Looper.getMainLooper())
-val updateTimeTask = object: Runnable {
-    override fun run() {
-        val currentTime = LocalTime.now()
-        if (currentTime.hour == 0 && currentTime.minute == 0) {
-            performAction()
-        }
-        handler.postDelayed(this, 1000)
-    }
-}
-handler.post(updateTimeTask)
-}
-
-fun performAction() {
-    previousTotalSteps = totalSteps
-            tv_stepsTaken.text = 0.toString()
-            saveData()
-}*/

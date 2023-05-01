@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main5.*
 
 class MainActivity5 : AppCompatActivity() {
@@ -33,6 +32,11 @@ class MainActivity5 : AppCompatActivity() {
         val kButton = findViewById<ImageView>(R.id.imageViewSteps) as ImageView
         kButton.setOnClickListener {
             startActivity(Intent(this@MainActivity5, MainActivity::class.java))
+            finish()
+        }
+        val iButton = findViewById<ImageView>(R.id.imageViewMore) as ImageView
+        iButton.setOnClickListener {
+            startActivity(Intent(this@MainActivity5, MainActivity7::class.java))
             finish()
         }
 
