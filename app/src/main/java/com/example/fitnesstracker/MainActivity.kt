@@ -12,6 +12,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
@@ -77,6 +79,21 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             currentSteps =
                 totalSteps.toInt() - previousTotalSteps.toInt()
             tv_stepsTaken.text = ("$currentSteps")
+
+
+            var kcal = currentSteps * 0.05;
+            var distance = currentSteps * 0.0007;
+            var kcalform = (String.format("%.2f", kcal))
+            var distform = (String.format("%.3f", distance))
+
+            val notificationManager = NotificationManagerCompat.from(this)
+            val builder = NotificationCompat.Builder(this, "CHANNEL_ID")
+                .setSmallIcon(R.mipmap.logo)
+                .setContentTitle("Активность")
+                .setContentText("Шаги: $currentSteps   Каллории: $kcalform   Дистанция: $distform")
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true)
+            notificationManager.notify(5, builder.build())
         }
     }
 

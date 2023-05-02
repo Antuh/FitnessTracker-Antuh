@@ -107,7 +107,7 @@ class MainActivity7 : AppCompatActivity(), SensorEventListener {
         swone.isChecked = sharedPreferences.getBoolean("SWITCH_STATE", false)
         if (swone.isChecked) {
             if (currentSteps == 5000)
-                notificationManager.notify(3, builder.build())
+                notificationManager.notify(1, builder.build())
         }
         val sharedPreferencestwo = getSharedPreferences("MY_PREFSTWO", Context.MODE_PRIVATE)
         swtwo.setOnCheckedChangeListener { _, isChecked ->
@@ -123,7 +123,7 @@ class MainActivity7 : AppCompatActivity(), SensorEventListener {
         swtwo.isChecked = sharedPreferencestwo.getBoolean("SWITCH_STATETWO", false)
         if (swtwo.isChecked) {
             if (currentSteps == 10000)
-                notificationManagertwo.notify(3, buildertwo.build())
+                notificationManagertwo.notify(2, buildertwo.build())
         }
         val sharedPreferencesthree = getSharedPreferences("MY_PREFSTHREE", Context.MODE_PRIVATE)
         swthree.setOnCheckedChangeListener { _, isChecked ->
