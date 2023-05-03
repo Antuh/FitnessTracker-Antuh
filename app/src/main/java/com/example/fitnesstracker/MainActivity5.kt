@@ -2,6 +2,7 @@ package com.example.fitnesstracker
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -40,21 +41,61 @@ class MainActivity5 : AppCompatActivity() {
             finish()
         }
 
-        btn.setOnClickListener {
+        calculate_btn.setOnClickListener {
             val regex = Regex("^\\d+(\\.\\d+)?$")
-            if (height.text.isNullOrEmpty() && weight.text.isNullOrEmpty())  {
-                Toast.makeText(this, "Введите данные веса и роста", Toast.LENGTH_SHORT).show()
-            } else {
-                if (regex.matches(height.text) && regex.matches(weight.text)) {
-                    val h = (height.text).toString().toFloat() /100
-                    val w = weight.text.toString().toFloat()
-                    val res = w/(h*h)
-                    result.text = "%.2f".format(res)
-                } else {
-                    Toast.makeText(this, "Корректно введите данные веса и роста", Toast.LENGTH_SHORT).show()
+            if (etHeight.text.isNotEmpty() && etWeight.text.isNotEmpty() && regex.matches(etHeight.text) && regex.matches(etWeight.text)) {
+                val height = (etHeight.text.toString()).toInt()
+                val weight = (etWeight.text.toString()).toInt()
+
+                val BMI = calculateBMI(height, weight)
+
+                bmi.text = BMI.toString()
+                bmi.visibility = View.VISIBLE
+
+                if (BMI < 18.5) {
+                    status.text = "Недостаток веса"
+                } else if (BMI >= 18.5 && BMI < 24.9) {
+                    status.text = "Нормальный вес"
+                } else if (BMI >= 24.9 && BMI < 30) {
+                    status.text = "Избыточный вес"
+                } else if (BMI >= 30) {
+                    status.text = "Ожирение"
                 }
+
+                bmi_tv.visibility = View.VISIBLE
+                status.visibility = View.VISIBLE
+
+                ReCalculate.visibility = View.VISIBLE
+                calculate_btn.visibility = View.GONE
+
+            }
+            else {
+                Toast.makeText(this, "Пожалуйста, введите действительный рост и вес", Toast.LENGTH_SHORT).show()
             }
         }
+
+        ReCalculate.setOnClickListener {
+            ResetEverything()
+        }
+
+    }
+    private fun ResetEverything() {
+
+        calculate_btn.visibility = View.VISIBLE
+        ReCalculate.visibility = View.GONE
+
+        etHeight.text.clear()
+        etWeight.text.clear()
+        status.text = " "
+        bmi.text = " "
+        bmi_tv.visibility = View.GONE
+    }
+    private fun calculateBMI(height: Int, weight: Int): Float {
+
+        val Height_in_metre = height.toFloat() / 100
+        val BMI = weight.toFloat() / (Height_in_metre * Height_in_metre)
+
+        return BMI
     }
     override fun onBackPressed() {
         if (backPressedTime + 3000 > System.currentTimeMillis()) {
