@@ -57,7 +57,7 @@
             app:srcCompat="@drawable/free_icon_more_455801" />
 
         <ImageView
-            android:id="@+id/imageViewChronometr2"
+            android:id="@+id/imageViewChronometr"
             android:layout_width="41dp"
             android:layout_height="41dp"
             android:layout_marginStart="29dp"

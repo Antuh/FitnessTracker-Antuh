@@ -38,7 +38,7 @@ class MainActivity2 : AppCompatActivity(), SensorEventListener {
             startActivity(Intent(this@MainActivity2, MainActivity::class.java))
             finish()
         }
-        val tButton = findViewById<ImageView>(R.id.imageViewChronometr2) as ImageView
+        val tButton = findViewById<ImageView>(R.id.imageViewChronometr) as ImageView
         tButton.setOnClickListener {
             startActivity(Intent(this@MainActivity2, MainActivity4::class.java))
             finish()
