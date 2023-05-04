@@ -142,7 +142,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             tv_stepsTaken.text = ("$currentSteps")
 
 
-            var kcal = currentSteps * 0.05;
+            /*var kcal = currentSteps * 0.05;
             var distance = currentSteps * 0.0007;
             var kcalform = (String.format("%.2f", kcal))
             var distform = (String.format("%.3f", distance))
@@ -154,7 +154,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
                 .setContentText("Шаги: $currentSteps   Каллории: $kcalform   Дистанция: $distform")
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setAutoCancel(true)
-            notificationManager.notify(5, builder.build())
+            notificationManager.notify(5, builder.build())*/
         }
     }
 

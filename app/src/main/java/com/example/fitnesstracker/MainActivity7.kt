@@ -157,6 +157,25 @@ class MainActivity7 : AppCompatActivity(), SensorEventListener {
             if (currentSteps == 20)
                 notificationManagerfour.notify(4, builderfour.build())
         }
+        val sharedPreferencefive = getSharedPreferences("MY_PREFSFIVE", Context.MODE_PRIVATE)
+        swseting.setOnCheckedChangeListener { _, isChecked ->
+            sharedPreferencefive.edit().putBoolean("SWITCH_STATEFIVE", isChecked).apply()
+        }
+        var kcal = currentSteps * 0.05;
+        var distance = currentSteps * 0.0007;
+        var kcalform = (String.format("%.2f", kcal))
+        var distform = (String.format("%.3f", distance))
+        val notificationManagerfive = NotificationManagerCompat.from(this)
+        val builderfive = NotificationCompat.Builder(this, "CHANNEL_ID")
+            .setSmallIcon(R.mipmap.logo)
+            .setContentTitle("Активность")
+            .setContentText("Шаги: $currentSteps   Каллории: $kcalform   Дистанция: $distform")
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setAutoCancel(true)
+        swseting.isChecked = sharedPreferencefive.getBoolean("SWITCH_STATEFIVE", false)
+        if (swseting.isChecked) {
+            notificationManagerfive.notify(6, builderfive.build())
+        }
     }
 
     private fun loadData() {
