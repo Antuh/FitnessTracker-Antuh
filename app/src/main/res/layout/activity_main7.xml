@@ -285,9 +285,9 @@
                 android:id="@+id/swseting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="170dp"
+                android:layout_marginLeft="155dp"
                 android:layout_marginTop="-27dp"
-                android:text="Уведомления" />
+                android:text="Панель активности" />
 
         </LinearLayout>
 

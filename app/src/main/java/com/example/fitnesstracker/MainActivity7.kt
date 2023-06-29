@@ -1,11 +1,14 @@
 package com.example.fitnesstracker
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
@@ -93,11 +96,17 @@ class MainActivity7 : AppCompatActivity(), SensorEventListener {
             currentSteps =
                 totalSteps.toInt() - previousTotalSteps.toInt()
         }
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && notificationManager.getNotificationChannel("CHANNEL_ID") == null) {
+            val channel = NotificationChannel("CHANNEL_ID", "CHANNEL_NAME", NotificationManager.IMPORTANCE_HIGH).apply {
+            }
+            notificationManager.createNotificationChannel(channel)
+        }
+
         val sharedPreferences = getSharedPreferences("MY_PREFS", Context.MODE_PRIVATE)
         swone.setOnCheckedChangeListener { _, isChecked ->
             sharedPreferences.edit().putBoolean("SWITCH_STATE", isChecked).apply()
         }
-        val notificationManager = NotificationManagerCompat.from(this)
         val builder = NotificationCompat.Builder(this, "CHANNEL_ID")
             .setSmallIcon(R.mipmap.logo)
             .setContentTitle("Цель")
@@ -172,6 +181,7 @@ class MainActivity7 : AppCompatActivity(), SensorEventListener {
             .setContentText("Шаги: $currentSteps   Каллории: $kcalform   Дистанция: $distform")
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setAutoCancel(true)
+            .setSound(null)
         swseting.isChecked = sharedPreferencefive.getBoolean("SWITCH_STATEFIVE", false)
         if (swseting.isChecked) {
             notificationManagerfive.notify(6, builderfive.build())
