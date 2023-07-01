@@ -88,11 +88,11 @@ class MainActivity4 : AppCompatActivity() {
             override fun run() {
                 val hours = seconds / 3600
                 val minutes = seconds % 3600 / 60
-                val secs = seconds % 60
+                val secon = seconds % 60
                 val time = String.format(
                     Locale.getDefault(),
                     "%d:%02d:%02d", hours,
-                    minutes, secs
+                    minutes, secon
                 )
                 timeView.text = time
                 if (running) {
